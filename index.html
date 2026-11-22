@@ -1,0 +1,424 @@
+<!-- ... existing code ... -->
+        .star-icon.blink {
+            animation: gtaStarBlink 0.42s infinite alternate ease-in-out;
+        }
+        @keyframes gtaStarBlink {
+            0% { opacity: 1; transform: scale(1.06); filter: drop-shadow(0 0 8px rgba(250, 204, 21, 0.95)); }
+            100% { opacity: 0.22; transform: scale(0.92); filter: drop-shadow(0 0 1px rgba(250, 204, 21, 0.2)); }
+        }
+
+        /* GTA Online Comic Collage Loading Screen */
+        #loadingScreen {
+            background:
+                radial-gradient(circle at 50% 45%, rgba(30, 41, 59, 0.65) 0%, rgba(5, 7, 12, 0.96) 72%),
+                linear-gradient(135deg, #07090f 0%, #111827 50%, #05070c 100%);
+            overflow: hidden;
+        }
+        .gta-collage-stage {
+            position: relative;
+            width: min(96vw, 1140px);
+            aspect-ratio: 16 / 9;
+            background: #f8fafc;
+            padding: 8px;
+            border-radius: 6px;
+            box-shadow:
+                0 28px 80px rgba(0, 0, 0, 0.9),
+                0 0 0 2px rgba(255, 255, 255, 0.14),
+                0 0 45px rgba(239, 68, 68, 0.18);
+            transform-style: preserve-3d;
+            transition: transform 0.22s ease-out;
+        }
+        @media (max-width: 768px) {
+            .gta-collage-stage {
+                width: 96vw;
+                aspect-ratio: auto;
+                min-height: 360px;
+                padding: 6px;
+            }
+        }
+        .gta-comic-grid {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            min-height: 348px;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-template-rows: repeat(6, 1fr);
+            gap: 6px;
+            background: #f8fafc;
+            overflow: hidden;
+        }
+        .gta-panel {
+            position: relative;
+            overflow: hidden;
+            background: #0f172a;
+            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), filter 0.35s ease;
+            will-change: transform;
+        }
+        .gta-panel::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.22) 48%, transparent 75%);
+            transform: translateX(-140%);
+            animation: gtaPanelShimmer 5.5s infinite ease-in-out;
+            pointer-events: none;
+        }
+        .gta-panel:nth-child(2)::after { animation-delay: 0.7s; }
+        .gta-panel:nth-child(3)::after { animation-delay: 1.4s; }
+        .gta-panel:nth-child(4)::after { animation-delay: 2.1s; }
+        .gta-panel:nth-child(5)::after { animation-delay: 2.8s; }
+        .gta-panel:nth-child(6)::after { animation-delay: 3.5s; }
+        .gta-panel:nth-child(7)::after { animation-delay: 4.2s; }
+        @keyframes gtaPanelShimmer {
+            0%, 72% { transform: translateX(-140%); }
+            92%, 100% { transform: translateX(150%); }
+        }
+        .gta-panel:hover {
+            z-index: 6;
+            filter: brightness(1.08) contrast(1.05);
+        }
+        .gta-panel-jet {
+            grid-column: 1 / span 4;
+            grid-row: 1 / span 2;
+            background: linear-gradient(135deg, #0284c7 0%, #38bdf8 48%, #e0f2fe 100%);
+        }
+        .gta-panel-heist {
+            grid-column: 5 / span 4;
+            grid-row: 1 / span 2;
+            background: linear-gradient(145deg, #7f1d1d 0%, #be185d 52%, #fbbf24 100%);
+        }
+        .gta-panel-crew {
+            grid-column: 9 / span 4;
+            grid-row: 1 / span 2;
+            background: linear-gradient(135deg, #1e293b 0%, #0f766e 55%, #f59e0b 100%);
+        }
+        .gta-panel-sniper {
+            grid-column: 1 / span 3;
+            grid-row: 3 / span 2;
+            background: linear-gradient(160deg, #1d4ed8 0%, #0284c7 60%, #93c5fd 100%);
+        }
+        .gta-panel-parachuter {
+            grid-column: 4 / span 3;
+            grid-row: 3 / span 4;
+            background: linear-gradient(180deg, #0369a1 0%, #38bdf8 55%, #f97316 100%);
+        }
+        .gta-panel-stunt {
+            grid-column: 7 / span 6;
+            grid-row: 3 / span 2;
+            background: linear-gradient(125deg, #451a03 0%, #d97706 52%, #fef08a 100%);
+        }
+        .gta-panel-lowrider {
+            grid-column: 1 / span 3;
+            grid-row: 5 / span 2;
+            background: linear-gradient(140deg, #1e1b4b 0%, #4c1d95 55%, #facc15 100%);
+        }
+        .gta-panel-boat {
+            grid-column: 7 / span 2;
+            grid-row: 5 / span 2;
+            background: linear-gradient(180deg, #0284c7 0%, #bae6fd 65%, #f8fafc 100%);
+        }
+        .gta-panel-sports {
+            grid-column: 9 / span 4;
+            grid-row: 5 / span 2;
+            background: linear-gradient(135deg, #311042 0%, #e11d48 52%, #fb923c 100%);
+        }
+        .gta-panel-tag {
+            position: absolute;
+            left: 10px;
+            bottom: 8px;
+            z-index: 4;
+            padding: 2px 8px;
+            border-radius: 3px;
+            background: rgba(9, 13, 22, 0.84);
+            border-left: 3px solid #facc15;
+            color: #f8fafc;
+            font-size: 10px;
+            font-weight: 900;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            pointer-events: none;
+        }
+        .gta-emblem-badge {
+            position: relative;
+            z-index: 15;
+            background: #090c12;
+            padding: 12px 22px 14px;
+            border: 4px solid #ffffff;
+            box-shadow:
+                0 16px 40px rgba(0, 0, 0, 0.85),
+                0 0 0 3px #090c12;
+            transform: rotate(-3.5deg);
+            user-select: none;
+            pointer-events: none;
+        }
+        .gta-logo-script {
+            font-family: 'Arial Black', 'Impact', 'Inter', sans-serif;
+            font-style: italic;
+            font-weight: 900;
+            line-height: 0.92;
+            color: #ffffff;
+            text-shadow:
+                -2px -2px 0 #090c12,
+                 2px -2px 0 #090c12,
+                -2px  2px 0 #090c12,
+                 3px  4px 0 #090c12;
+            letter-spacing: -0.03em;
+        }
+        .gta-online-ribbon {
+            margin-top: 4px;
+            background: linear-gradient(90deg, #b91c1c 0%, #ef4444 50%, #b91c1c 100%);
+            border: 2px solid #ffffff;
+            padding: 2px 14px;
+            text-align: center;
+            font-weight: 900;
+            font-style: italic;
+            letter-spacing: 0.24em;
+            color: #ffffff;
+            text-shadow: 1px 2px 0 rgba(0, 0, 0, 0.85);
+        }
+    </style>
+</head>
+<!-- ... existing code ... -->
+<body class="bg-slate-950 text-slate-100 select-none">
+
+    <!-- 1. LOADING SCREEN (GTA Online Comic Collage) -->
+    <div id="loadingScreen" class="fixed inset-0 z-50 flex flex-col items-center justify-center p-3 sm:p-5 transition-opacity duration-700">
+        <div id="gtaCollageStage" class="gta-collage-stage">
+            <div class="gta-comic-grid">
+                <!-- Panel 1: Fighter / Heist Jet Strike -->
+                <div class="gta-panel gta-panel-jet" data-depth="1.15">
+                    <svg viewBox="0 0 420 220" class="w-full h-full object-cover" aria-hidden="true">
+                        <defs>
+                            <linearGradient id="skyJetGrad" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0%" stop-color="#0369a1" />
+                                <stop offset="55%" stop-color="#38bdf8" />
+                                <stop offset="100%" stop-color="#e0f2fe" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="420" height="220" fill="url(#skyJetGrad)" />
+                        <circle cx="95" cy="65" r="46" fill="#ffffff" opacity="0.45" />
+                        <circle cx="135" cy="74" r="34" fill="#ffffff" opacity="0.55" />
+                        <polygon points="340,28 245,92 268,105 362,40" fill="#f8fafc" opacity="0.72" />
+                        <g transform="translate(215, 118) rotate(-24)">
+                            <polygon points="-95,0 -20,-14 78,-6 105,0 78,6 -20,14" fill="#64748b" stroke="#0f172a" stroke-width="3" />
+                            <polygon points="-32,-6 -58,-68 -24,-62 12,-6" fill="#475569" stroke="#0f172a" stroke-width="3" />
+                            <polygon points="-32,6 -58,68 -24,62 12,6" fill="#475569" stroke="#0f172a" stroke-width="3" />
+                            <polygon points="-76,-4 -96,-34 -74,-30 -58,-4" fill="#334155" stroke="#0f172a" stroke-width="2.5" />
+                            <polygon points="-76,4 -96,34 -74,30 -58,4" fill="#334155" stroke="#0f172a" stroke-width="2.5" />
+                            <ellipse cx="26" cy="0" rx="26" ry="8" fill="#0f172a" />
+                            <polygon points="105,0 134,-6 128,0 134,6" fill="#facc15" />
+                        </g>
+                    </svg>
+                    <span class="gta-panel-tag">AIRSPACE HEIST</span>
+                </div>
+
+                <!-- Panel 2: Bank / Vault Action -->
+                <div class="gta-panel gta-panel-heist" data-depth="0.85">
+                    <svg viewBox="0 0 420 220" class="w-full h-full object-cover" aria-hidden="true">
+                        <rect width="420" height="220" fill="#881337" />
+                        <polygon points="0,0 420,0 420,140 0,220" fill="#be123c" opacity="0.75" />
+                        <rect x="24" y="26" width="165" height="150" rx="6" fill="#fecdd3" opacity="0.22" />
+                        <!-- Masked Raider -->
+                        <circle cx="136" cy="78" r="24" fill="#4c1d95" stroke="#090d16" stroke-width="3" />
+                        <path d="M92,195 Q102,112 138,112 Q176,112 186,195 Z" fill="#db2777" stroke="#090d16" stroke-width="3" />
+                        <rect x="148" y="98" width="96" height="14" rx="3" transform="rotate(-8 148 98)" fill="#1e293b" stroke="#090d16" stroke-width="2.5" />
+                        <polygon points="246,91 286,76 280,104" fill="#fde047" opacity="0.9" />
+                        <!-- Hostage / Guard -->
+                        <circle cx="318" cy="84" r="22" fill="#fed7aa" stroke="#090d16" stroke-width="3" />
+                        <path d="M280,195 Q288,118 318,118 Q350,118 358,195 Z" fill="#f8fafc" stroke="#090d16" stroke-width="3" />
+                    </svg>
+                    <span class="gta-panel-tag">MAZE TOWER VAULT</span>
+                </div>
+
+                <!-- Panel 3: Enforcer & Crew -->
+                <div class="gta-panel gta-panel-crew" data-depth="1.05">
+                    <svg viewBox="0 0 420 220" class="w-full h-full object-cover" aria-hidden="true">
+                        <rect width="420" height="220" fill="#0f172a" />
+                        <polygon points="180,0 420,0 420,220 120,220" fill="#d97706" opacity="0.32" />
+                        <!-- Character with Bat -->
+                        <circle cx="118" cy="76" r="22" fill="#fdba74" stroke="#090d16" stroke-width="3" />
+                        <path d="M78,196 Q86,112 118,112 Q150,112 158,196 Z" fill="#eab308" stroke="#090d16" stroke-width="3" />
+                        <line x1="138" y1="104" x2="215" y2="26" stroke="#f59e0b" stroke-width="11" stroke-linecap="round" />
+                        <line x1="138" y1="104" x2="215" y2="26" stroke="#090d16" stroke-width="3" stroke-linecap="round" />
+                        <!-- Crew Boss -->
+                        <circle cx="305" cy="74" r="25" fill="#d6d3d1" stroke="#090d16" stroke-width="3" />
+                        <rect x="288" y="64" width="34" height="7" fill="#1c1917" />
+                        <path d="M255,196 Q266,110 305,110 Q346,110 356,196 Z" fill="#334155" stroke="#090d16" stroke-width="3" />
+                    </svg>
+                    <span class="gta-panel-tag">CREW SYNDICATE</span>
+                </div>
+
+                <!-- Panel 4: Tactical Recon -->
+                <div class="gta-panel gta-panel-sniper" data-depth="1.2">
+                    <svg viewBox="0 0 320 220" class="w-full h-full object-cover" aria-hidden="true">
+                        <rect width="320" height="220" fill="#1e3a8a" />
+                        <circle cx="220" cy="70" r="95" fill="#38bdf8" opacity="0.28" />
+                        <circle cx="96" cy="84" r="25" fill="#d6d3d1" stroke="#090d16" stroke-width="3" />
+                        <path d="M46,204 Q56,122 98,122 Q142,122 154,204 Z" fill="#0f172a" stroke="#090d16" stroke-width="3" />
+                        <rect x="112" y="128" width="165" height="15" rx="3" transform="rotate(-12 112 128)" fill="#090d16" stroke="#94a3b8" stroke-width="2" />
+                        <circle cx="178" cy="112" r="9" fill="#38bdf8" stroke="#090d16" stroke-width="2.5" />
+                    </svg>
+                    <span class="gta-panel-tag">RECON &amp; SNIPE</span>
+                </div>
+
+                <!-- Panel 5: Skydiver / Parachute Drop -->
+                <div class="gta-panel gta-panel-parachuter" data-depth="0.9">
+                    <svg viewBox="0 0 320 440" class="w-full h-full object-cover" aria-hidden="true">
+                        <rect width="320" height="440" fill="#0284c7" />
+                        <path d="M25,115 Q160,15 295,115 L255,152 Q160,115 65,152 Z" fill="#f97316" stroke="#090d16" stroke-width="3.5" />
+                        <line x1="45" y1="134" x2="145" y2="255" stroke="#ffffff" stroke-width="2" />
+                        <line x1="275" y1="134" x2="175" y2="255" stroke="#ffffff" stroke-width="2" />
+                        <circle cx="160" cy="245" r="24" fill="#fed7aa" stroke="#090d16" stroke-width="3" />
+                        <rect x="136" y="226" width="48" height="14" rx="6" fill="#1e293b" stroke="#090d16" stroke-width="2.5" />
+                        <path d="M126,272 L194,272 L206,365 L114,365 Z" fill="#ea580c" stroke="#090d16" stroke-width="3" />
+                    </svg>
+                    <span class="gta-panel-tag">FREEFALL DROP</span>
+                </div>
+
+                <!-- Panel 6: Desert Quad & Dirt Stunt -->
+                <div class="gta-panel gta-panel-stunt" data-depth="1.25">
+                    <svg viewBox="0 0 640 220" class="w-full h-full object-cover" aria-hidden="true">
+                        <rect width="640" height="220" fill="#b45309" />
+                        <polygon points="0,155 240,85 450,130 640,65 640,220 0,220" fill="#78350f" />
+                        <polygon points="0,175 260,112 640,145 640,220 0,220" fill="#d97706" opacity="0.65" />
+                        <!-- Dirt Rider & Quad -->
+                        <circle cx="385" cy="72" r="19" fill="#ef4444" stroke="#090d16" stroke-width="3" />
+                        <path d="M352,135 L412,96 L438,142" fill="none" stroke="#dc2626" stroke-width="11" stroke-linecap="round" />
+                        <rect x="330" y="132" width="128" height="22" rx="6" transform="rotate(-14 394 143)" fill="#facc15" stroke="#090d16" stroke-width="3" />
+                        <circle cx="348" cy="168" r="26" fill="#0f172a" stroke="#475569" stroke-width="5" />
+                        <circle cx="445" cy="146" r="26" fill="#0f172a" stroke="#475569" stroke-width="5" />
+                    </svg>
+                    <span class="gta-panel-tag">BLAINE STUNT RUN</span>
+                </div>
+
+                <!-- Panel 7: Street Cruiser / Drive-By -->
+                <div class="gta-panel gta-panel-lowrider" data-depth="0.95">
+                    <svg viewBox="0 0 320 220" class="w-full h-full object-cover" aria-hidden="true">
+                        <rect width="320" height="220" fill="#312e81" />
+                        <rect x="0" y="148" width="320" height="72" fill="#1e1b4b" />
+                        <polygon points="24,152 62,102 225,98 286,128 292,162 20,164" fill="#581c87" stroke="#090d16" stroke-width="3" />
+                        <circle cx="84" cy="164" r="22" fill="#090d16" stroke="#facc15" stroke-width="4" />
+                        <circle cx="238" cy="164" r="22" fill="#090d16" stroke="#facc15" stroke-width="4" />
+                        <circle cx="145" cy="84" r="18" fill="#86efac" stroke="#090d16" stroke-width="2.5" />
+                    </svg>
+                    <span class="gta-panel-tag">SOUTH CENTRAL</span>
+                </div>
+
+                <!-- Panel 8: Offshore Speedboat -->
+                <div class="gta-panel gta-panel-boat" data-depth="1.1">
+                    <svg viewBox="0 0 220 220" class="w-full h-full object-cover" aria-hidden="true">
+                        <rect width="220" height="125" fill="#38bdf8" />
+                        <rect y="125" width="220" height="95" fill="#0284c7" />
+                        <path d="M24,132 L188,118 L168,154 L46,156 Z" fill="#ffffff" stroke="#090d16" stroke-width="3" />
+                        <path d="M52,134 L172,124 L162,136 L58,142 Z" fill="#dc2626" />
+                        <path d="M20,156 Q85,144 195,154" fill="none" stroke="#e0f2fe" stroke-width="5" />
+                    </svg>
+                    <span class="gta-panel-tag">PACIFIC COAST</span>
+                </div>
+
+                <!-- Panel 9: Super Sport & Bike Chase -->
+                <div class="gta-panel gta-panel-sports" data-depth="1.2">
+                    <svg viewBox="0 0 420 220" class="w-full h-full object-cover" aria-hidden="true">
+                        <rect width="420" height="220" fill="#4c0519" />
+                        <polygon points="0,150 420,115 420,220 0,220" fill="#1e1b4b" />
+                        <!-- Sports Coupe -->
+                        <path d="M165,152 L212,102 L345,98 L398,128 L394,164 L162,166 Z" fill="#e11d48" stroke="#090d16" stroke-width="3" />
+                        <polygon points="222,110 328,108 352,128 205,130" fill="#fde047" opacity="0.35" />
+                        <polygon points="396,138 420,132 420,152 396,148" fill="#fef08a" />
+                        <circle cx="215" cy="166" r="24" fill="#090d16" stroke="#94a3b8" stroke-width="4" />
+                        <circle cx="352" cy="164" r="24" fill="#090d16" stroke="#94a3b8" stroke-width="4" />
+                        <!-- Sport Bike -->
+                        <circle cx="88" cy="172" r="22" fill="#090d16" stroke="#cbd5e1" stroke-width="3.5" />
+                        <circle cx="158" cy="172" r="22" fill="#090d16" stroke="#cbd5e1" stroke-width="3.5" />
+                        <path d="M88,172 L124,132 L158,172" fill="none" stroke="#f97316" stroke-width="8" stroke-linecap="round" />
+                    </svg>
+                    <span class="gta-panel-tag">HIGHWAY PURSUIT</span>
+                </div>
+            </div>
+
+            <!-- Central Emblem Overlay -->
+            <div class="gta-emblem-badge" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) rotate(-3.5deg);">
+                <div class="gta-logo-script text-2xl sm:text-4xl">grand</div>
+                <div class="gta-logo-script text-2xl sm:text-4xl pl-2">theft</div>
+                <div class="gta-logo-script text-2xl sm:text-4xl pl-4">auto</div>
+                <div class="gta-online-ribbon text-xs sm:text-sm">ONLINE</div>
+            </div>
+        </div>
+
+        <!-- Loading Progress & Status Bar -->
+        <div class="w-full max-w-xl mt-4 px-2 z-10">
+            <div class="flex items-center justify-between text-xs font-bold tracking-wider uppercase text-slate-200 mb-1.5">
+                <span id="loadingStatusText" class="text-amber-300 truncate pr-3">Lade Los Santos Welt &amp; 3D-Modelle...</span>
+                <span id="loadingPercentText" class="text-white font-black shrink-0">0%</span>
+            </div>
+            <div class="w-full h-3 bg-slate-900/95 rounded-full overflow-hidden border border-slate-700 shadow-inner">
+                <div id="loadingBar" class="h-full w-0 bg-gradient-to-r from-red-600 via-amber-400 to-emerald-400 transition-all duration-150"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. LOGIN / ACCOUNT SCREEN -->
+<!-- ... existing code ... -->
+        // ==========================================
+        // 1. LOADING SCREEN SEQUENCE (GTA Online Comic Collage)
+        // ==========================================
+        const loadingBar = document.getElementById('loadingBar');
+        const loadingScreen = document.getElementById('loadingScreen');
+        const loginScreen = document.getElementById('loginScreen');
+        const loadingStatusText = document.getElementById('loadingStatusText');
+        const loadingPercentText = document.getElementById('loadingPercentText');
+        const collageStage = document.getElementById('gtaCollageStage');
+        const collagePanels = Array.from(document.querySelectorAll('.gta-panel'));
+
+        const loadingMilestones = [
+            { at: 14, text: 'Initialisiere Los Santos Insel & Küstenlinien...' },
+            { at: 32, text: 'Poliere Porsche 911 GT3 RS (Satin-Schwarz / Champagner)...' },
+            { at: 52, text: 'Richte Maze Tower Tresor & Überwachungsnetz ein...' },
+            { at: 72, text: 'Betanke Goldenen Privatjet am internationalen Flughafen...' },
+            { at: 88, text: 'Synchronisiere 5-Sterne-Fahndung & Wetter-Engine...' },
+            { at: 100, text: 'Bereit für Los Santos Online!' }
+        ];
+
+        if (collageStage) {
+            collageStage.addEventListener('mousemove', (e) => {
+                const rect = collageStage.getBoundingClientRect();
+                const nx = ((e.clientX - rect.left) / Math.max(1, rect.width) - 0.5) * 2;
+                const ny = ((e.clientY - rect.top) / Math.max(1, rect.height) - 0.5) * 2;
+                collageStage.style.transform = `perspective(1200px) rotateY(${nx * 2.4}deg) rotateX(${-ny * 2.4}deg)`;
+                collagePanels.forEach((panel) => {
+                    const depth = parseFloat(panel.dataset.depth || '1');
+                    panel.style.transform = `translate3d(${-nx * 5 * depth}px, ${-ny * 5 * depth}px, 0)`;
+                });
+            });
+            collageStage.addEventListener('mouseleave', () => {
+                collageStage.style.transform = 'perspective(1200px) rotateY(0deg) rotateX(0deg)';
+                collagePanels.forEach((panel) => {
+                    panel.style.transform = 'translate3d(0, 0, 0)';
+                });
+            });
+        }
+
+        let loadProgress = 0;
+        const loadInterval = setInterval(() => {
+            loadProgress += Math.random() * 14 + 7;
+            if (loadProgress >= 100) {
+                loadProgress = 100;
+                clearInterval(loadInterval);
+                setTimeout(() => {
+                    loadingScreen.style.opacity = '0';
+                    setTimeout(() => {
+                        loadingScreen.classList.add('hidden');
+                        loginScreen.classList.remove('hidden');
+                    }, 700);
+                }, 420);
+            }
+            const rounded = Math.round(loadProgress);
+            loadingBar.style.width = loadProgress + '%';
+            if (loadingPercentText) loadingPercentText.textContent = rounded + '%';
+            if (loadingStatusText) {
+                const activeStep = loadingMilestones.filter((m) => rounded >= m.at).pop();
+                if (activeStep) loadingStatusText.textContent = activeStep.text;
+            }
+        }, 125);
+// ... existing code ...
